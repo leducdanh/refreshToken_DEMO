@@ -32,6 +32,7 @@ app.get('/veryfi', authenticationToken, (req, res) => {
 })
 
 app.post('/refresh-token', (req, res) => {
+    //'req.body.token' is accesstoken
     jwt.verify(req.body.token, REFRETCH_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
         const newAccesstoken = generateAccessToken({username: user.username})
